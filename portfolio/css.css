@@ -1,0 +1,184 @@
+/* 1. Định nghĩa CSS Variables tại :root với 3 Mức Xám Ban Đầu */
+:root {
+    /* Màu chủ đạo (Primary & Secondary) */
+    --primary-color: #2c3e50;
+    --secondary-color: #34495e;
+  
+    /* 3 Mức xám ban đầu của bạn */
+    --gray-dark: #333333;       /* Xám đậm (Dùng cho chữ chính) */
+    --gray-medium: #ddd;        /* Xám vừa (Dùng cho đường viền/border) */
+    --gray-light: #ecf0f1;     /* Xám nhạt (Dùng cho nền Sidebar/Card) */
+  
+    /* Nền và các màu phụ trợ */
+    --bg-main: #ffffff;
+    --bg-badge: #e8f4f8;        /* Nền thẻ skill */
+    --border-badge: #bce8f1;    /* Viền thẻ skill */
+    --text-white: #ffffff;
+  
+    /* Kích thước Container tối đa */
+    --container-max-width: 1200px;
+  }
+  
+  /* Reset cơ bản */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* --- THÊM LỚP CONTAINER --- */
+  .container {
+    max-width: var(--container-max-width);
+    margin: 0 auto; /* Căn giữa toàn bộ giao diện */
+    width: 100%;
+  }
+  
+  /* 2. Cấu trúc Layout tổng thể bằng CSS Grid */
+  .portfolio-layout {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      "header  header"
+      "sidebar main"
+      "footer  footer";
+    min-height: 100vh;
+    gap: 15px;
+    padding: 15px;
+    background-color: var(--bg-main);
+    color: var(--gray-dark);
+  }
+  
+  .header {
+    grid-area: header;
+    background-color: var(--primary-color);
+    color: var(--text-white);
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .sidebar {
+    grid-area: sidebar;
+    background-color: var(--gray-light); /* Sử dụng xám nhạt #ecf0f1 */
+    padding: 20px;
+    border: 1px solid var(--gray-medium);
+  }
+  
+  .main {
+    grid-area: main;
+    background-color: var(--bg-main);
+    padding: 20px;
+    border: 1px solid var(--gray-medium); /* Sử dụng xám vừa #ddd */
+  }
+  
+  .footer {
+    grid-area: footer;
+    background-color: var(--secondary-color);
+    color: var(--text-white);
+    padding: 15px;
+    text-align: center;
+  }
+  
+  /* 3. Khu vực Skills bằng Flexbox */
+  .skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+  }
+  
+  .skill-item {
+    background-color: var(--bg-badge);
+    color: var(--primary-color);
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    border: 1px solid var(--border-badge);
+    
+    /* Cấu hình hiệu ứng mượt mà */
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  /* --- HIỆU ỨNG HOVER CHO SKILL ITEM --- */
+  .skill-item:hover {
+    background-color: var(--primary-color);
+    color: var(--text-white);
+    transform: translateY(-3px); /* Nảy nhẹ lên 3px */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Đổ bóng nhẹ */
+  }
+  
+  /* 4. Khu vực Dịch vụ (Services) - CSS Grid */
+  .services-title {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: var(--gray-dark);
+  }
+  
+  .services-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Mặc định 4 cột trên Desktop */
+    gap: 15px;
+  }
+  
+  .service-card {
+    background-color: var(--gray-light);  /* Sử dụng xám nhạt #ecf0f1 */
+    border: 1px solid var(--gray-medium); /* Sử dụng xám vừa #ddd */
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    
+    /* Cấu hình hiệu ứng mượt mà */
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  /* --- HIỆU ỨNG HOVER CHO SERVICE CARD --- */
+  .service-card:hover {
+    border-color: var(--primary-color);
+    background-color: var(--bg-main);
+    transform: translateY(-5px); /* Nảy nhẹ lên 5px */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12); /* Đổ bóng nổi bật card */
+  }
+  
+  .service-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: var(--primary-color);
+  }
+  
+  .service-card p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--gray-dark);
+  }
+  
+  /* =========================================================
+     5. MEDIA QUERIES RESPONSIVE
+     ========================================================= */
+  
+  /* Tablet (768px - 1023px): Dịch vụ giảm xuống 2 cột */
+  @media (max-width: 1023px) {
+    .services-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  /* Mobile (< 768px): Layout tổng thể & Dịch vụ về 1 cột */
+  @media (max-width: 767px) {
+    .portfolio-layout {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "header"
+        "sidebar"
+        "main"
+        "footer";
+      gap: 10px;
+      padding: 10px;
+    }
+  
+    .services-container {
+      grid-template-columns: 1fr;
+    }
+  }
