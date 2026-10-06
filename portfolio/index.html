@@ -1,66 +1,642 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio Cá Nhân</title>
-  <!-- Kết nối tới file bai1.css cùng thư mục -->
-  <link rel="stylesheet" href="css.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hồ Sơ Cá Nhân - Hiệu Ứng Chuyển Động & Hoạt Họa CSS</title>
+    <!-- Liên kết tới tệp CSS -->
+    <link rel="stylesheet" href="css.css">
 </head>
 <body>
 
-  <div class="portfolio-layout">
-    <header class="header">
-      <h1>My Portfolio</h1>
+    <!-- ========================================================
+         HEADER & MENU ĐIỀU HƯỚNG VỚI NÚT HAMBURGER GÓC TRÁI
+         VÀ TÀI KHOẢN CÁ NHÂN CÓ KHUNG AVATAR SIÊU CHÁY Ở GÓC PHẢI
+    ======================================================== -->
+    <header id="main-header">
+        <!-- Checkbox điều khiển xổ menu khi bấm hamburger (ẩn hoàn toàn) -->
+        <input type="checkbox" id="menu-toggle" aria-label="Mở/Đóng menu điều hướng">
+
+        <!-- GÓC BÊN TRÁI: NÚT HAMBURGER 3 GẠCH VÀ LOGO -->
+        <div class="header-left">
+            <!-- Nút Hamburger 3 gạch biến đổi thành dấu X khi ấn -->
+            <label for="menu-toggle" class="hamburger" title="Bấm để mở/đóng danh mục thông tin" aria-controls="dropdown-drawer">
+                <span class="bar bar-1"></span>
+                <span class="bar bar-2"></span>
+                <span class="bar bar-3"></span>
+            </label>
+
+            <!-- Logo thương hiệu -->
+            <a href="#home" class="logo" title="Trang chủ">
+                <span class="logo-icon">🚀</span>
+                <span class="logo-text">Hồ Sơ Cá Nhân</span>
+            </a>
+        </div>
+
+        <!-- GÓC BÊN PHẢI: NÚT ĐỔI GIAO DIỆN & TÀI KHOẢN CÁ NHÂN VỚI KHUNG AVATAR SIÊU CHÁY -->
+        <div class="header-right">
+            <!-- Nút đổi màu giao diện (Sáng / Tối) -->
+            <button class="theme-btn" id="theme-toggle" title="Chuyển chế độ sáng/tối">
+                <span id="theme-icon">🌙</span>
+                <span id="theme-text">Tối</span>
+            </button>
+
+            <!-- Tài khoản cá nhân với khung avatar siêu cháy rực lửa -->
+            <div class="user-account" id="user-account" tabindex="0" title="Tài khoản cá nhân (Khung avatar siêu cháy 🔥)">
+                <!-- Khung Avatar Siêu Cháy -->
+                <div class="fire-avatar-frame">
+                    <div class="fire-flame-glow"></div>
+                    <div class="fire-border-ring"></div>
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Ảnh Đại Diện Tài Khoản" class="user-avatar-img">
+                    <span class="fire-badge" title="Huy hiệu Rực Lửa 🔥">🔥</span>
+                </div>
+
+                <!-- Tên tài khoản và trạng thái -->
+                <div class="user-info">
+                    <span class="user-name">Quốc Quang</span>
+                    <span class="user-role">Đang hoạt động 🔥</span>
+                </div>
+
+                <!-- Menu tài khoản cá nhân khi hover hoặc bấm vào -->
+                <div class="account-dropdown">
+                    <div class="acc-dropdown-header">
+                        <div class="acc-avatar-preview">
+                            <div class="fire-avatar-frame mini">
+                                <div class="fire-border-ring"></div>
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Ảnh đại diện">
+                            </div>
+                            <div class="acc-user-meta">
+                                <h4>Nguyễn Quốc Quang</h4>
+                                <p>quocquang@gmail.com</p>
+                            </div>
+                        </div>
+                        <span class="vip-tag">🔥 VIP BÙNG CHÁY</span>
+                    </div>
+                    <div class="acc-divider"></div>
+                    <ul class="acc-dropdown-list">
+                        <li><a href="#card">👤 Xem thông tin nhân sự</a></li>
+                        <li><a href="#skills">📊 Bảng kỹ năng chuyên môn</a></li>
+                        <li><a href="#coding-practice">💻 Bài tập Python & C++</a></li>
+                        <li><a href="#flappy-bird">🎮 Trò chơi Flappy Bird</a></li>
+                        <li><a href="#contact">💬 Hộp thư kết nối trực tiếp</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- MENU XỔ XUỐNG KHI BẤM NÚT HAMBURGER Ở GÓC TRÁI (CHỨA CÁC THÔNG TIN CẦN THIẾT) -->
+        <div class="dropdown-drawer" id="dropdown-drawer">
+            <div class="drawer-container">
+                <!-- Cột 1: Danh mục điều hướng -->
+                <div class="drawer-section drawer-nav-section">
+                    <div class="drawer-badge">🧭 DANH MỤC ĐIỀU HƯỚNG</div>
+                    <ul class="drawer-nav">
+                        <li>
+                            <a href="#home">
+                                <span class="d-icon">🏠</span>
+                                <div class="d-text">
+                                    <strong>Trang Chủ</strong>
+                                    <small>Giới thiệu & Hiệu ứng gõ chữ</small>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#card">
+                                <span class="d-icon">🪪</span>
+                                <div class="d-text">
+                                    <strong>Thẻ Nhân Sự 3D</strong>
+                                    <small>Hiệu ứng lật 180 độ hiển thị liên hệ</small>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#parallax">
+                                <span class="d-icon">🌄</span>
+                                <div class="d-text">
+                                    <strong>Ảnh Nền </strong>
+                                    <small>Hiệu ứng cuộn đa chiều với CSS thuần</small>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#skills">
+                                <span class="d-icon">📈</span>
+                                <div class="d-text">
+                                    <strong>Kỹ Năng Lập Trình</strong>
+                                    <small>Thanh tiến trình chạy tự động</small>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#coding-practice">
+                                <span class="d-icon">💻</span>
+                                <div class="d-text">
+                                    <strong>Bài Tập Python & C++</strong>
+                                    <small>Thực hành 4 phép toán cơ bản (+, -, *, /)</small>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#flappy-bird">
+                                <span class="d-icon">🎮</span>
+                                <div class="d-text">
+                                    <strong>Trò Chơi Flappy Bird</strong>
+                                    <small>Mini game giải trí thử thách chú chim</small>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#contact">
+                                <span class="d-icon">📞</span>
+                                <div class="d-text">
+                                    <strong>Thông Tin Liên Hệ</strong>
+                                    <small>Hotline, thư điện tử & địa chỉ</small>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Cột 2: Thông tin cần thiết & Hành động nhanh -->
+                <div class="drawer-section drawer-info-section">
+                    <div class="drawer-badge">ℹ️ THÔNG TIN CẦN THIẾT</div>
+                    <div class="student-info-card">
+                        <div class="info-row">
+                            <span class="info-label">👨‍💻 Họ và tên:</span>
+                            <span class="info-value">Nguyễn Quốc Quang</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">🏫 Đơn vị:</span>
+                            <span class="info-value">Đại học Lạc Hồng (LHU)</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">🎓 Chuyên ngành:</span>
+                            <span class="info-value">Công nghệ Thông tin (CNTT)</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">⚡ Định hướng:</span>
+                            <span class="info-value">Lập Trình Viên Web Frontend</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">🟢 Trạng thái:</span>
+                            <span class="info-value status-active">Sẵn sàng nhận dự án</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">📱 Điện thoại:</span>
+                            <span class="info-value">0123 456 789</span>
+                        </div>
+                    </div>
+
+                    <!-- Các nút tương tác nhanh -->
+                    <div class="drawer-actions">
+                        <a href="#contact" class="drawer-btn btn-primary-drawer">
+                            <span>💬 Gửi Lời Nhắn Nhanh</span>
+                        </a>
+                        <a href="#card" class="drawer-btn btn-outline-drawer">
+                            <span>🔍 Xem Hồ Sơ Chi Tiết</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <aside class="sidebar">
-      <h3>Thông tin cá nhân</h3>
-      <P>Trần Quốc Quang</P>
-      <p>Sinh Viên Lạc Hồng</p>
-      <p>25CT111-125</p>
-    </aside>
+    <main>
+        <!-- ========================================================
+             BÀI 3: TYPING EFFECT (HIỆU ỨNG TỰ GÕ CHỮ THUẦN CSS)
+             Dòng giới thiệu: "Tôi là Lập Trình Viên Web..."
+        ======================================================== -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                
+                <h1 class="hero-title">Xin chào, tôi là sinh viên Lạc Hồng</h1>
+                
+                <!-- Dòng chữ tự gõ thuần CSS không dùng JS -->
+                <div class="typing-wrapper">
+                    <span class="typing">Tôi là Lập Trình Viên Web...</span>
+                </div>
 
-    <main class="main">
-      <h2>Kỹ năng (Skills)</h2>
-      <div class="skills-container">
-        <div class="skill-item">HTML5</div>
-        <div class="skill-item">CSS3</div>
-        <div class="skill-item">JavaScript</div>
-        <div class="skill-item">Flexbox</div>
-        <div class="skill-item">CSS Grid</div>
-        <div class="skill-item">React</div>
-        <div class="skill-item">Git & GitHub</div>
-      </div>
+                <p class="hero-desc">
+                    Hiệu ứng chữ tự gõ (Typing Effect) được tạo bằng 100% CSS Animation với hàm 
+                    <code>steps(28)</code> và con trỏ nhấp nháy <code>blink</code>, hoàn toàn không sử dụng JavaScript.
+                </p>
 
-      <!-- =========================================================
-           KHU VỰC DỊCH VỤ (BREAKPOINT CHALLENGE)
-           ========================================================= -->
-      <h2 class="services-title">Dịch vụ (Services)</h2>
-      <div class="services-container">
-        <div class="service-card">
-          <h3>Thiết kế Web</h3>
-          <p>Tạo giao diện người dùng đẹp mắt, hiện đại và chuẩn UI/UX.</p>
-        </div>
-        <div class="service-card">
-          <h3>Lập trình Front-End</h3>
-          <p>Chuyển đổi bản vẽ thiết kế thành mã HTML/CSS/JS tối ưu.</p>
-        </div>
-        <div class="service-card">
-          <h3>Tối ưu Tốc độ</h3>
-          <p>Tăng tốc độ tải trang và tối ưu trải nghiệm trên mọi thiết bị.</p>
-        </div>
-        <div class="service-card">
-          <h3>Tư vấn & Bảo trì</h3>
-          <p>Hỗ trợ nâng cấp, sửa lỗi và bảo trì hệ thống website định kỳ.</p>
-        </div>
-      </div>
+                <div class="hero-btns">
+                    <a href="#card" class="btn btn-primary">Xem Thẻ Nhân Sự</a>
+                    <a href="#skills" class="btn btn-outline">Xem Kỹ Năng</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             BÀI 2: CARD FLIP EFFECT (THẺ NHÂN SỰ LẬT 180 ĐỘ)
+             Khi hover, thẻ lật 180 độ để hiện thông tin liên hệ mặt sau
+        ======================================================== -->
+        <section class="card-section" id="card">
+            <div class="section-header">
+                <span class="section-badge">Bài 2: Hiệu Ứng Lật Thẻ 3D</span>
+                <h2 class="section-title">Thẻ Nhân Sự Không Gian 3D</h2>
+                <p class="section-desc">
+                    Rê chuột vào thẻ nhân sự bên dưới để kích hoạt hiệu ứng lật 180 độ trong không gian 3 chiều 
+                    hiển thị thông tin liên hệ chi tiết ở mặt sau.
+                </p>
+            </div>
+
+            <div class="card-container">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <!-- MẶT TRƯỚC (Front) -->
+                        <div class="card-front">
+                            <div class="avatar-container">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Ảnh Đại Diện Nhân Sự" class="avatar-img">
+                                <span class="active-badge" title="Đang hoạt động"></span>
+                            </div>
+                            <h3 class="person-name">Nguyễn Quốc Quang</h3>
+                            <p class="person-title">Lập Trình Viên Giao Diện Web</p>
+                            <div class="person-tags">
+                                <span class="tag">HTML5 / CSS3</span>
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">Thiết Kế UI/UX</span>
+                            </div>
+                            <div class="flip-hint">
+                                <span class="flip-icon">🔄</span> Rê chuột để xem thông tin liên hệ
+                            </div>
+                        </div>
+
+                        <!-- MẶT SAU (Back) -->
+                        <div class="card-back">
+                            <div class="card-back-badge">💼 THÔNG TIN LIÊN HỆ</div>
+                            <h3 class="card-back-name">Nguyễn Quốc Quang</h3>
+                            
+                            <ul class="contact-details">
+                                <li>
+                                    <span class="c-icon">📧</span>
+                                    <div class="c-text">
+                                        <span class="c-label">Hộp thư điện tử:</span>
+                                        <strong>quocquang@gmail.com</strong>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="c-icon">📱</span>
+                                    <div class="c-text">
+                                        <span class="c-label">Số điện thoại:</span>
+                                        <strong>0123 456 789</strong>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="c-icon">🏢</span>
+                                    <div class="c-text">
+                                        <span class="c-label">Khoa / Bộ môn:</span>
+                                        <strong>Khoa CNTT - Đại học Lạc Hồng</strong>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="c-icon">📍</span>
+                                    <div class="c-text">
+                                        <span class="c-label">Địa chỉ làm việc:</span>
+                                        <strong>TP. Biên Hòa, Đồng Nai</strong>
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <a href="#contact" class="card-contact-btn">Gửi Tin Nhắn Trực Tiếp</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             BÀI 4: PARALLAX IMAGE BANNER
+             background-attachment: fixed tạo hiệu ứng cuộn chậm
+        ======================================================== -->
+        <section class="parallax" id="parallax">
+            <div class="parallax-overlay"></div>
+            <div class="parallax-content">
+                <span class="section-badge badge-light">Bài 4: Ảnh Nền Cuộn Parallax</span>
+                <h2 class="parallax-title">Nhà Phát Triển Web Sáng Tạo</h2>
+                <p class="parallax-desc">
+                    Trải nghiệm hiệu ứng Parallax Scrolling: hình ảnh nền được cố định và tạo chiều sâu không gian khi cuộn trang, 
+                    sử dụng thuộc tính <code>background-attachment: fixed</code> thuần CSS.
+                </p>
+                <div class="parallax-highlights">
+                    <div class="highlight-item">
+                        <span class="h-number">100%</span>
+                        <span class="h-label">CSS Thuần Túy</span>
+                    </div>
+                    <div class="highlight-item">
+                        <span class="h-number">Cố Định</span>
+                        <span class="h-label">Vị Trí Nền (Fixed)</span>
+                    </div>
+                    <div class="highlight-item">
+                        <span class="h-number">60 FPS</span>
+                        <span class="h-label">Chuyển Động Mượt Mà</span>
+                    </div>
+                </div>
+                <a href="#skills" class="btn btn-light">Khám Phá Kỹ Năng Bên Dưới ↓</a>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             BÀI 6: SKILL BAR ANIMATION
+             Khi trang web tải xong, thanh chạy từ 0% đến giá trị đích
+        ======================================================== -->
+        <section class="skills-section" id="skills">
+            <div class="section-header">
+                <span class="section-badge">Bài 6: Hiệu Ứng Thanh Kỹ Năng Động</span>
+                <h2 class="section-title">Kỹ Năng Chuyên Môn</h2>
+                <p class="section-desc">
+                    Khi trang web tải xong, các thanh tiến trình kỹ năng tự động kích hoạt chạy từ 0% đến giá trị đích 
+                    (HTML 90%, CSS 85%, JavaScript 75%, UI/UX 80%) bằng hiệu ứng CSS Keyframe Animations.
+                </p>
+            </div>
+
+            <div class="skills-container">
+                <!-- HTML 90% -->
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name"><span class="tech-icon">🌐</span> Cấu Trúc Web HTML5</span>
+                        <span class="skill-percentage">90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress html"></div>
+                    </div>
+                </div>
+
+                <!-- CSS 85% -->
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name"><span class="tech-icon">🎨</span> CSS3 / Chuyển Động & Hoạt Họa</span>
+                        <span class="skill-percentage">85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress css"></div>
+                    </div>
+                </div>
+
+                <!-- JavaScript 75% -->
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name"><span class="tech-icon">⚡</span> Ngôn Ngữ JavaScript (ES6+)</span>
+                        <span class="skill-percentage">75%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress js"></div>
+                    </div>
+                </div>
+
+                <!-- UI/UX 80% -->
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name"><span class="tech-icon">✨</span> Thiết Kế Giao Diện UI/UX & Responsive</span>
+                        <span class="skill-percentage">80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress ui"></div>
+                    </div>
+                </div>
+
+                <div class="replay-action">
+                    <button class="btn btn-outline" id="replay-btn">
+                        🔄 Chạy Lại Hiệu Ứng Kỹ Năng
+                    </button>
+                    <span class="replay-note">(Bấm nút để kích hoạt lại hiệu ứng thanh tiến trình mà không cần tải lại trang)</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             BÀI TẬP LẬP TRÌNH: PYTHON & C++ (CÁC PHÉP TOÁN + - * /)
+             Đặt ngay phía trên trò chơi Flappy Bird theo yêu cầu
+        ======================================================== -->
+        <section class="coding-section" id="coding-practice">
+            <div class="section-header">
+                <span class="section-badge">Thực Hành Lập Trình</span>
+                <h2 class="section-title">Bài Tập Code Python & C++ (+, -, *, /)</h2>
+                <p class="section-desc">
+                    Luyện tập và củng cố kiến thức về 4 phép toán cơ bản: <b>Cộng (+)</b>, <b>Trừ (-)</b>, <b>Nhân (*)</b>, <b>Chia (/)</b>.
+                    Hãy chọn ngôn ngữ, xem đề bài, chỉnh sửa code và nhấn <b>Chạy Code</b> để kiểm thử kết quả trực tiếp!
+                </p>
+            </div>
+
+            <div class="coding-container">
+                <!-- Thanh điều khiển: Chọn ngôn ngữ & Chọn bài tập phép toán -->
+                <div class="coding-control-bar">
+                    <div class="control-group">
+                        <span class="ctrl-label">Ngôn ngữ:</span>
+                        <div class="lang-tabs" id="lang-tabs">
+                            <button class="lang-tab active" data-lang="python">
+                                <span class="lang-icon">🐍</span> Python 3
+                            </button>
+                            <button class="lang-tab" data-lang="cpp">
+                                <span class="lang-icon">⚙️</span> C++ (G++ 17)
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <span class="ctrl-label">Chọn phép toán:</span>
+                        <div class="exercise-pills" id="exercise-pills">
+                            <button class="ex-pill active" data-ex="add">➕ Phép Cộng (+)</button>
+                            <button class="ex-pill" data-ex="sub">➖ Phép Trừ (-)</button>
+                            <button class="ex-pill" data-ex="mul">✖️ Phép Nhân (*)</button>
+                            <button class="ex-pill" data-ex="div">➗ Phép Chia (/)</button>
+                            <button class="ex-pill" data-ex="mix">🧮 Tổng Hợp (+ - * /)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="coding-main-grid">
+                    <!-- Cột bên trái: Chi tiết đề bài & Ghi chú kiến thức -->
+                    <div class="problem-card">
+                        <div class="card-head">
+                            <span class="prob-tag" id="prob-tag">Bài 1: Phép Cộng (+)</span>
+                            <h3 class="prob-title" id="prob-title">Tính Tổng Hai Số Nguyên</h3>
+                        </div>
+
+                        <div class="prob-body">
+                            <p class="prob-desc" id="prob-desc">
+                                Cho hai số nguyên <code>a = 15</code> và <code>b = 27</code>. Hãy sử dụng toán tử <code>+</code> để tính tổng của chúng và in ra màn hình.
+                            </p>
+
+                            <div class="prob-specs">
+                                <div class="spec-item">
+                                    <span class="spec-label">📥 Đầu vào (Input):</span>
+                                    <code id="prob-input">a = 15, b = 27</code>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">📤 Đầu ra mong đợi:</span>
+                                    <code id="prob-output">Tong = 42</code>
+                                </div>
+                            </div>
+
+                            <div class="note-box" id="prob-note">
+                                <span class="note-title">💡 Ghi chú kiến thức:</span>
+                                <p id="prob-note-text">
+                                    Toán tử <code>+</code> trong Python và C++ dùng để cộng 2 số. Nếu dùng với chuỗi văn bản, nó sẽ thực hiện nối chuỗi.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cột bên phải: Trình soạn thảo Code & Console Terminal -->
+                    <div class="editor-column">
+                        <!-- Code Editor Window -->
+                        <div class="editor-window">
+                            <div class="window-header">
+                                <div class="window-dots">
+                                    <span class="dot red"></span>
+                                    <span class="dot yellow"></span>
+                                    <span class="dot green"></span>
+                                </div>
+                                <div class="file-tab">
+                                    <span class="file-icon" id="file-icon">🐍</span>
+                                    <span class="file-name" id="file-name">main.py</span>
+                                </div>
+                                <div class="editor-actions">
+                                    <button class="tool-btn" id="btn-solution" title="Xem code mẫu chuẩn">
+                                        💡 Xem Lời Giải
+                                    </button>
+                                    <button class="tool-btn" id="btn-reset" title="Khôi phục code ban đầu">
+                                        🔄 Đặt Lại
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="editor-body">
+                                <div class="line-numbers" id="line-numbers">
+                                    <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span>
+                                </div>
+                                <textarea id="code-editor" class="code-textarea" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
+                            </div>
+
+                            <div class="editor-footer">
+                                <span class="editor-tip">💡 Bạn có thể chỉnh sửa giá trị trực tiếp trong khung code</span>
+                                <button class="btn btn-primary run-btn" id="btn-run-code">
+                                    ▶ Chạy Code & Kiểm Tra
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Console Terminal Output -->
+                        <div class="terminal-window">
+                            <div class="terminal-header">
+                                <span class="term-title">🖥️ Console Kết Quả & Kiểm Thử (Terminal Output)</span>
+                                <button class="term-clear-btn" id="btn-clear-term" title="Xóa màn hình console">🧹 Xóa</button>
+                            </div>
+                            <div class="terminal-body" id="terminal-output">
+                                <div class="term-line prompt">$ Hệ thống sẵn sàng. Nhấn "▶ Chạy Code & Kiểm Tra" để xem kết quả và vượt qua các test cases!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             MINI GAME: FLAPPY BIRD (TRÒ CHƠI GIẢI TRÍ VƯỢT CHƯỚNG NGẠI VẬT)
+             Đặt ngay phía trên phần liên hệ theo yêu cầu
+        ======================================================== -->
+        <section class="game-section" id="flappy-bird">
+            <div class="section-header">
+                <span class="section-badge">Mini Game Giải Trí</span>
+                <h2 class="section-title">Trò Chơi Flappy Bird</h2>
+                <p class="section-desc">
+                    Thư giãn một chút trước khi kết nối liên hệ! Hãy điều khiển chú chim vượt qua các cột chướng ngại vật bằng cách nhấn <b>Phím Cách (Space)</b> hoặc <b>chạm/nhấp chuột</b> vào khung chơi.
+                </p>
+            </div>
+
+            <div class="game-wrapper">
+                <!-- Bảng hiển thị điểm số & cách chơi -->
+                <div class="game-dashboard">
+                    <div class="score-card">
+                        <span class="score-label">Điểm Hiện Tại</span>
+                        <span class="score-number" id="current-score">0</span>
+                    </div>
+                    <div class="score-card highlight">
+                        <span class="score-label">Kỷ Lục Cao Nhất 🏆</span>
+                        <span class="score-number" id="best-score">0</span>
+                    </div>
+                    <div class="game-controls-hint">
+                        <span class="hint-badge">🎮 Hướng dẫn:</span>
+                        <span>Nhấn <b>Phím Cách (Space)</b> hoặc <b>Chạm / Nhấp Chuột</b> để vỗ cánh bay lên</span>
+                    </div>
+                </div>
+
+                <!-- Khung hiển thị Canvas và Lớp phủ (Overlay) -->
+                <div class="canvas-container" id="canvas-container">
+                    <canvas id="flappy-canvas" width="400" height="520"></canvas>
+                    
+                    <!-- Lớp phủ khi chưa bắt đầu -->
+                    <div class="game-overlay" id="start-overlay">
+                        <div class="overlay-content">
+                            <div class="overlay-icon">🐥</div>
+                            <h3>Sẵn Sàng Cất Cánh?</h3>
+                            <p>Nhấn nút bên dưới hoặc gõ phím <b>Space</b> / Chạm màn hình để bắt đầu bay!</p>
+                            <button class="btn btn-primary btn-game" id="start-game-btn">▶ Bắt Đầu Chơi Ngay</button>
+                        </div>
+                    </div>
+
+                    <!-- Lớp phủ khi va chạm (Game Over) -->
+                    <div class="game-overlay hidden" id="gameover-overlay">
+                        <div class="overlay-content">
+                            <div class="overlay-icon">💥</div>
+                            <h3>Rất Tiếc! Đã Va Chạm</h3>
+                            <div class="gameover-stats">
+                                <p>Điểm đạt được: <b id="final-score">0</b></p>
+                                <p>Kỷ lục hiện tại: <b id="final-best">0</b></p>
+                            </div>
+                            <button class="btn btn-primary btn-game" id="restart-game-btn">🔄 Thử Lại Lần Nữa</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHẦN LIÊN HỆ ĐÍCH ĐẾN CỦA NÚT FAB -->
+        <section class="contact-section" id="contact">
+            <div class="section-header">
+                <span class="section-badge">Liên Hệ</span>
+                <h2 class="section-title">Kết Nối Với Tôi</h2>
+                <p class="section-desc">Bạn có thể bấm vào nút tròn "Liên hệ" luôn nổi ở góc màn hình hoặc kết nối qua thông tin bên dưới.</p>
+            </div>
+            <div class="contact-card">
+                <div class="contact-box">
+                    <span class="box-icon">📞</span>
+                    <h3>Đường Dây Nóng</h3>
+                    <p>0123 456 789</p>
+                </div>
+                <div class="contact-box">
+                    <span class="box-icon">✉️</span>
+                    <h3>Hộp Thư Điện Tử</h3>
+                    <p>quocquang@gmail.com</p>
+                </div>
+                <div class="contact-box">
+                    <span class="box-icon">📍</span>
+                    <h3>Địa Chỉ Trụ Sở</h3>
+                    <p>Đại học Lạc Hồng, Biên Hòa, Đồng Nai</p>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer class="footer">
-      <p>&copy; 2026 Portfolio Cá Nhân</p>
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 Hồ Sơ Cá Nhân | Dự án thực hành hiệu ứng CSS Animations & Transitions hoàn thiện</p>
     </footer>
-  </div>
 
+    <!-- ========================================================
+         BÀI 1: FLOATING ACTION BUTTON (FAB)
+         Nút tròn "Liên hệ" luôn nằm ở góc màn hình với hiệu ứng "phập phồng" (pulse)
+    ======================================================== -->
+    <a href="#contact" class="fab" id="fab-contact" title="Liên hệ ngay (Nút hành động nổi FAB)">
+        <span class="fab-wave"></span>
+        <span class="fab-wave fab-wave-2"></span>
+        <span class="fab-icon">📞</span>
+        <span class="fab-label">Liên hệ</span>
+    </a>
+
+    <!-- JavaScript hỗ trợ Theme Toggle, Menu Dropdown và Replay Animation -->
+    <script src="script.js"></script>
 </body>
-</html>                                                                       
+</html>
